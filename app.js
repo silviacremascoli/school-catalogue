@@ -1,7 +1,7 @@
 class School {
   constructor(name, level, numberOfStudents) {
     this._name = name;
-    this._level = ["primary", "middle", "high"];
+    this._level = level;
     this._numberOfStudents = numberOfStudents;
   }
 
@@ -16,16 +16,26 @@ class School {
   get numberOfStudents() {
     return this._numberOfStudents;
   }
-  set numberOfStudents(newNumberofStudents) {
-    if (typeof numberOfStudents === number) {
-      this._numberOfStudents = newNumberofStudents;
+  set numberOfStudents(newNumberOfStudents) {
+    if (typeof newNumberOfStudents === number) {
+      this._numberOfStudents = newNumberOfStudents;
+    } else {
+      console.log("Invalid input: numberOfStudents must be set to a Number.");
     }
   }
-  quickFacts() {}
-  pickSubstituteTeacher() {}
+  quickFacts() {
+    console.log(
+      `${School.name} educates ${School.numberOfStudents} students at the ${School.level} school level.`
+    );
+  }
+  pickSubstituteTeacher(substituteTeachers) {
+    let substituteTeachers = [""];
+    let randomIndex = Math.floor(substituteTeachers.length * Math.random());
+    return substituteTeachers[randomIndex];
+  }
 }
 
-class Primary extends School {
+class PrimarySchool extends School {
   constructor(name, numberOfStudents, pickupPolicy) {
     super(name, numberOfStudents);
     this._pickupPolicy = pickupPolicy;
@@ -36,13 +46,13 @@ class Primary extends School {
   }
 }
 
-class Middle extends School {
+class MiddleSchool extends School {
   constructor(name, numberOfStudents) {
     super(name, numberOfStudents);
   }
 }
 
-class High extends School {
+class HighSchool extends School {
   constructor(name, numberOfStudents, sportsTeams) {
     super(name, numberOfStudents);
     this._sportsTeams = sportsTeams;
